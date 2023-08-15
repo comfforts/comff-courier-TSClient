@@ -1,6 +1,6 @@
 {
   "name": "@hankgalt/comff-courier-tsclient",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Comfforts courier service TS client",
   "main": "index.ts",
   "scripts": {
