@@ -22,14 +22,14 @@ export interface Size {
   depth: number
 }
 
-interface ICourier extends IGeoPoint, Size {
+export interface ICourier extends IGeoPoint, Size {
   id: string
   name: string
   org: string
   address?: IAddress
 }
 
-interface ICourierGeo {
+export interface ICourierGeo {
   courier: ICourier
   distance: number
 }

@@ -14,13 +14,13 @@ export interface Size {
     width: number;
     depth: number;
 }
-interface ICourier extends IGeoPoint, Size {
+export interface ICourier extends IGeoPoint, Size {
     id: string;
     name: string;
     org: string;
     address?: IAddress;
 }
-interface ICourierGeo {
+export interface ICourierGeo {
     courier: ICourier;
     distance: number;
 }
@@ -74,4 +74,3 @@ export declare const mapCourierToICourier: (courier: Courier) => ICourier;
 export declare const mapCourierGeosToICourierGeos: (crGeos: CourierGeo[]) => ICourierGeo[];
 export declare const mapCourierGeoToICourierGeo: (crGeo: CourierGeo) => ICourierGeo | undefined;
 export declare const mapPointtoIGeoPoint: (lat: number, long: number) => IGeoPoint;
-export {};
