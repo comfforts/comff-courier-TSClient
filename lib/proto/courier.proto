@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package couriers.v1;
+
+option go_package = "github.com/comfforts/comff-courier/api/couriers_v1";
+
+message Capacity {
+    float   height = 1;
+    float   width = 2;
+    float   depth = 3;
+}
+
+message Courier {
+    string      id = 1;
+    string      name = 2;
+    string      org = 3;
+    float       longitude = 4;
+    float       latitude = 5;
+    string      addressId = 7;
+    Capacity    capacity = 8;
+}
+
+message CourierGeo {
+    Courier courier = 1;
+    float   distance = 2;
+}
+
+message AddCourierRequest {
+    string  requestedBy = 1;
+    string  org = 2;
+    string  name = 3;
+    string  postalCode = 5;
+    string  country = 6;
+    float   longitude = 7;
+    float   latitude = 8;
+    string  street = 9;
+    string  city = 10;
+    string  state = 11;
+    float   height = 12;
+    float   width = 13;
+    float   depth = 14;
+}
+
+message AddCourierResponse {
+    bool                ok = 1;
+    optional Courier    courier = 2;
+}
+
+message UpdateCourierRequest {
+    string  id = 1;
+    string  requestedBy = 2;
+    string  postalCode = 3;
+    string  country = 4;
+    float   longitude = 5;
+    float   latitude = 6;
+    string  street = 7;
+    string  city = 8;
+    string  state = 9;
+    float   height = 10;
+    float   width = 11;
+    float   depth = 12;
+}
+
+message UpdateCourierResponse {
+    bool                ok = 1;
+    optional Courier    courier = 2;
+}
+
+message GetCourierRequest {
+    string id = 1;
+}
+
+message GetCourierResponse {
+    optional Courier courier = 1;
+}
+
+message SearchCouriersRequest {
+    string  org = 1;
+    string  postalCode = 2;
+    string  country = 3;
+    float   longitude = 4;
+    float   latitude = 5;
+    uint32  distance = 6;
+}
+
+message SearchCouriersResponse {
+    repeated CourierGeo     couriers = 1;
+    float   longitude = 2;
+    float   latitude = 3;
+}
+
+message DeleteCourierRequest {
+    string id = 1;
+}
+
+message DeleteResponse {
+    bool ok = 1;
+}
+
+service Couriers {
+    rpc RegisterCourier(AddCourierRequest) returns (AddCourierResponse) {}
+    rpc GetCourier(GetCourierRequest) returns (GetCourierResponse) {}
+    rpc UpdateCourier(UpdateCourierRequest) returns (UpdateCourierResponse) {}
+    rpc SearchCouriers(SearchCouriersRequest) returns (SearchCouriersResponse) {}
+    rpc DeleteCourier(DeleteCourierRequest) returns (DeleteResponse) {}
+}
